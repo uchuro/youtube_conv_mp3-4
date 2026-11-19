@@ -1,48 +1,56 @@
-import { useState } from "react"
+import { useState } from "react";
 
+function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-function LoginPage(){
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(email);
+    console.log(password);
+  }
 
-    const[email,SetEmail]=useState("");
-    const[password,SetPassword]=useState("");
+  return (
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
+            <h2 className="mb-4 text-center">Login</h2>
 
-    function HandleSubmit(event){
-        event.preventDefault();
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                className="form-control"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </div>
 
-        console.log(email);
-        console.log(password);
-        
-    }
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                className="form-control"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </div>
 
-    return(
-        <>
-            <form onSubmit={HandleSubmit}>
-                <label>Email</label>
-                <input 
-                    type="email" 
-                    name="user_email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(event)=>SetEmail(event.target.value)} // callback function () => seteamail()
-                /> 
-                <br />
-                <label>Password</label>
-                <input 
-                    type="text" 
-                    name="user_passward" 
-                    placeholder="password"
-                    value={password}
-                    onChange={(event)=>SetPassword(event.target.value)}
-                /> 
-                <br />
-
-                <button type="submit">Login</button>
-            </form>
-        
-        </>
-
-    )
+            <button type="submit" className="btn btn-primary w-100">
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-
-export default LoginPage
+export default LoginPage;
