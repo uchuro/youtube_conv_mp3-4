@@ -1,0 +1,11 @@
+{
+    "env":"local",
+    "port":"localhost:8080",
+    "database": {
+        "host":"127.0.0.1",
+        "port":"3306",
+        "username":"viraj",
+        "password":"0130",
+        "dbname":"youtube_conv_proj"
+    }
+}
