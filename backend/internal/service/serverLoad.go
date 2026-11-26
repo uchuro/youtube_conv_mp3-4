@@ -29,7 +29,8 @@ func Start() {
 	handler := http.NewServeMux() //
 	// TODO: pass the API here with function
 
-	handler.HandleFunc("/home", api.UserLogin(db))
+	handler.HandleFunc("/login", api.UserLogin(db))
+	handler.HandleFunc("/home",api.UserLink(db))
 
 	/*
 		if i want to pass the api function -

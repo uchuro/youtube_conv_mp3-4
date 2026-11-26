@@ -41,12 +41,40 @@ func UserLogin(db *sql.DB) http.HandlerFunc {
 			return
 		}
 		// pass to db
-		if isItSave := database.LoginUserData(&user, db, r); isItSave == true {
-			fmt.Println("Data is saved ")
+		isItSave, msg := database.LoginUserData(&user, db, r)
+
+		if isItSave {
+			fmt.Println("Data is saved")
+			resSuccess := types.SuccessResponse{
+				Success:      true,
+				Message:      "user data has been saved",
+				EffectedData: "none",
+			}
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusCreated)
+			json.NewEncoder(w).Encode(resSuccess)
+			return
 		} else {
-			fmt.Println("data is not saved ")
+			// fmt.Println("Data is not been saved")
+			resError := types.ErrorResponse{
+				Success:      false,
+				Message:      msg.Error(),
+				EffectedData: "conflict of some data",
+			}
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(resError)
+			return
 		}
-		// return response
 	}
 
+}
+
+func UserLink(db *sql.DB) http.HandlerFunc {
+	return (func(w http.ResponseWriter, r *http.Request) {
+		// valid the link
+		// make the request at same time to both mp3 and mp4 function
+		// pass the both to user frontend
+
+	})
 }
