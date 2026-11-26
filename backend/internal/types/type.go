@@ -1,8 +1,8 @@
 package types
 
 type User struct {
-	UserEmail    string
-	UserPassword string
+	UserEmail    string `json:"email"`
+	UserPassword string `json:"password"`
 }
 
 /*
@@ -17,12 +17,13 @@ error	Error information, when appropriate
 */
 
 type ErrorResponse struct {
-	Success      bool
-	Message      string
-	EffectedData string
+	Success      bool   `json:"success"`
+	Message      string `json:"message"`
+	EffectedData string `json:"effectedData"`
 }
 
 type SuccessResponse struct {
-	Message      string
-	EffectedData string
+	Success      bool   `json:"success"`
+	Message      string `json:"message"`
+	EffectedData string `json:"effectedData"`
 }
